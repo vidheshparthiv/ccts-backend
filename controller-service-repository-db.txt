@@ -1,0 +1,102 @@
+controller->service->repository->db
+
+Entity:
+- represents an table in db
+(jpa uses entity classes to convert java obj to database rows automatically)
+- one class= one table
+@entity marks class as db
+@Id
+@
+
+Repository:
+- is used to communicate with Database
+- we dont write any normal sql queries instead we have jpa functions
+- jpa : findAll() -> select *
+	findById() -> select where id =
+	deleteAll() -> delete from table
+	deleteAllID() -> where id = 
+	save() -> input into 
+
+extends Jparepository<student,Integer>{}
+student - entity class
+Integer - data type of primary key
+spring automatically generates sql behind the scene
+
+Service:
+- heart amd soul of my website
+- pure jova coding / business logic
+- clean code, easy maintenance, reusability, follows standards
+- styling fuckin matters 
+- service has to be surrounded by try catches
+
+@service - marks business logic layer
+
+Controller:
+- handles http requests from browser or postman or frontend
+- it decides which url, http method, which service method to call
+Request Mapping
+- @getMapping --- GET --- fetch data --- select query
+- @postMapping -- POST -- Insert data --- insert query
+- @putMapping --- PUT --- update data based on id --- update query
+- @deleteMapping -- DELETE -- delete data based on id -- delete query
+- @requestMapping -- ANY -- Base url
+
+Java
+@requestMapping("/students")
+
+base url 
+http://localhost:8000/students
+
+200 - OK
+201 - created
+204 - no content
+400 - bad request
+404 - not_found
+
+--------------------
+
+JPQl - writing custom query
+
+select rating from feedback where rating between 3.5 and 4.5;
+
+--------------
+
+pagination - show data page by page, large data in to small pages
+spring boot uses interface pageable
+page size - control how many record per page
+sorting - order data (asc/desc)
+
+---------------
+
+Types of Entity mapping:
+
+1.One to One
+2.One to Many
+3.Many to Many
+4.Many to Many
+
+ONE_TO_ONE: (@Onetoone)
+- one record in table A is related to exactly one record in B if A is not there, then there will be no existance of table B
+- one Entity cannot exists without other
+- relation is unique
+- @JoinColumn() - create foreign key
+eg : student ----- Attendence
+     Person ---- IDProof
+
+ONE_TO_MANY(@Onetomany())
+- one record is table A is related to many record in table B
+- @onetomany(cascade=Cascadetpe.____)//controls what happends to the child entity
+ -- Any operation done on the parent is automatically applied to its child entities.
+ -- Parent controls the children.
+	1.ALL - all operations
+	2.Persist - save
+	3.Remove - delete
+	4.Merge - update
+eg : one teacher ----- many students
+
+MANY_TO_ONE
+- many records of table A is related to table B
+
+Many to Many 
+- many to many 
+
