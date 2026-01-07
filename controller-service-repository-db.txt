@@ -1,4 +1,4 @@
-controller->service->repository->db
+flow: controller->service->repository->db
 
 Entity:
 - represents an table in db
