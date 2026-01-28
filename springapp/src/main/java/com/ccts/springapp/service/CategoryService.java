@@ -1,5 +1,6 @@
 package com.ccts.springapp.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,25 @@ public class CategoryService {
             return null;
         }
         return s.get();
+    }
+
+    //get all categories
+    public List<Category> getAllCtargory(){
+        return cr.findAll();
+    }
+
+    //delete all
+    public void deleteAllCategories(){
+        cr.deleteAll();
+    }
+
+    //delete by id
+    public boolean deleteCategoryById(int id){
+        Optional<Category> c=cr.findById(id);
+        if(c.isEmpty()){
+            return false;
+        }
+        cr.deleteById(id);
+        return true;
     }
 }
