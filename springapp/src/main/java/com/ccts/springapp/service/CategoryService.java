@@ -3,7 +3,9 @@ package com.ccts.springapp.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ccts.springapp.model.Category;
@@ -48,5 +50,22 @@ public class CategoryService {
         }
         cr.deleteById(id);
         return true;
+    }
+
+    //get all by sorted value
+    public List<Category> getAllCategoriesSorted(String field){//like name etc
+        return cr.findAll(Sort.by(field));
+    }
+
+    //get by pages
+    public List<Category> getByPages(int page,int size){
+        Page<Category> c=cr.findAll(PageRequest.of(page, size));
+        return c.getContent();
+    }
+
+    //get by pages and sorted
+    public List<Category> getByPagesAndSorted(int page,int size,String field){
+        Page<Category> c=cr.findAll(PageRequest.of(page,size,Sort.by(field)));
+        return c.getContent();
     }
 }
