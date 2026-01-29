@@ -53,5 +53,19 @@ public class CategoryController {
         cs.deleteAllCategories();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
+    @GetMapping("/sorted/{field}")
+    public ResponseEntity<List<Category>> getAllSorted(@PathVariable String field){
+        return new ResponseEntity<>(cs.getAllCategoriesSorted(field),HttpStatus.OK);
+    }
+    @GetMapping("/{page}/{size}")
+    public ResponseEntity<List<Category>> getByPages(@PathVariable int page,@PathVariable int size){
+        List<Category> c=cs.getByPages(page,size);
+        return new ResponseEntity<>(c,HttpStatus.OK);
+    }
+    @GetMapping("/{page}/{size}/{field}")
+    public ResponseEntity<List<Category>> getByPagesAndSorted(@PathVariable int page,@PathVariable int size,@PathVariable String field){
+        List<Category> c=cs.getByPagesAndSorted(page,size,field);
+        return new ResponseEntity<>(c,HttpStatus.OK);
+    }
+    
 }
