@@ -68,4 +68,24 @@ public class CategoryService {
         Page<Category> c=cr.findAll(PageRequest.of(page,size,Sort.by(field)));
         return c.getContent();
     }
+
+    //get by categoryName
+    public Category getByName(String categoryName){
+        Optional<Category>c=cr.findByName(categoryName);
+        if(c.isEmpty()){
+            return null;
+        }
+        return c.get();
+    }
+
+    //update category
+    public Category updateCategory(int categoryId,Category category){
+        Optional<Category> existingCategory=cr.findById(categoryId);
+        if(existingCategory.isEmpty()){
+            return null;
+        }
+        category.setCategoryId(categoryId);
+        return cr.save(category);
+    }
+
 }
