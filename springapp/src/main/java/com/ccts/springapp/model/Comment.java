@@ -9,19 +9,19 @@ import jakarta.persistence.Id;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long commentId;
+    private int commentId;
 
     private String content;
 
     private String author;
 
     
-    public long getCommentId() {
+    public int getCommentId() {
         return commentId;
     }
 
 
-    public void setCommentId(long commentId) {
+    public void setCommentId(int commentId) {
         this.commentId = commentId;
     }
 
@@ -46,7 +46,7 @@ public class Comment {
     }
 
 
-    public Comment(long commentId, String content, String author) {
+    public Comment(int commentId, String content, String author) {
         this.commentId = commentId;
         this.content = content;
         this.author = author;
