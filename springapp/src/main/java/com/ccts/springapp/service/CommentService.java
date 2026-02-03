@@ -9,7 +9,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ccts.springapp.model.Comment;
-import com.ccts.springapp.model.Comment;
 import com.ccts.springapp.repository.CommentRepo;
 
 @Service
@@ -75,5 +74,5 @@ public class CommentService {
         Page<Comment> c=cr.findAll(PageRequest.of(page,size,Sort.by(field)));
         return c.getContent();
     }
-    
+
 }
