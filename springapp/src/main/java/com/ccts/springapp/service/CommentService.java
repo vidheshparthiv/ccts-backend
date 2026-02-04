@@ -75,4 +75,9 @@ public class CommentService {
         return c.getContent();
     }
 
+    //get by author name
+    public List<Comment> getCommentsByAuthor(){
+        return cr.findAllOrderByAuthor();
+    }
+
 }
