@@ -76,4 +76,8 @@ public class CommentController {
         List<Comment> c=cs.getByPagesAndSorted(page,size,field);
         return new ResponseEntity<>(c,HttpStatus.OK);
     }
+    @GetMapping("/author/sorted")
+    public ResponseEntity<List<Comment>> getCommentsByAuthor(){
+        return new ResponseEntity<>(cs.getCommentsByAuthor(),HttpStatus.OK);
+    }
 }
