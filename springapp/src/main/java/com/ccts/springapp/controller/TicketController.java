@@ -1,4 +1,4 @@
-package com.ccts.springapp.controller;
+package com.ccts.springapp.controller; 
 public class TicketController {
 
 }
