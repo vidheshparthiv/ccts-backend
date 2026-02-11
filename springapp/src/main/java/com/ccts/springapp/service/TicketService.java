@@ -1,8 +1,8 @@
 package com.ccts.springapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.hibernate.query.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -26,4 +26,44 @@ public class TicketService {
         org.springframework.data.domain.Page<Ticket>p=tr.findAll(PageRequest.of(page, size));
         return p.getContent();
     }
+    //get all
+    public List<Ticket> getAllTickets(){
+        return tr.findAll();
+    }
+
+    //get by id
+    public Optional<Ticket> getTicketById(int id){
+        return tr.findById(id);
+    }
+
+    //update Ticket
+    public Ticket updateTicket(int id,Ticket Ticket){
+        Optional<Ticket>c=tr.findById(id);
+        if(c.isEmpty()){
+            return null;
+        }
+        Ticket.setTicketId(id);
+        return tr.save(Ticket);
+    }
+
+    //delete by id
+    public Ticket deleteTicket(int id){
+        Optional<Ticket>c=tr.findById(id);
+        if(c.isEmpty()){
+            return null;
+        }
+        tr.deleteById(id);
+        return c.get();
+    }
+
+    //delete all
+    public void deleteAllTickets(){
+        tr.deleteAll();
+    }
+
+    //get all by sorted value
+    public List<Ticket> getAllTicketsSorted(String field){//like name etc
+        return tr.findAll(Sort.by(field));
+    }
+
 }
