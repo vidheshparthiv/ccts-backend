@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.ccts.springapp.model.Ticket;
 @Repository
-public interface TicketRepo extends JpaRepository<Ticket, Long> {
+public interface TicketRepo extends JpaRepository<Ticket,Integer> {
 
 }
