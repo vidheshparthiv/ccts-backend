@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ticketId;
+    private int ticketId;
 
     private String subject;
 
@@ -19,11 +19,11 @@ public class Ticket {
 
     private String assignedTo;
 
-    public long getTicketId() {
+    public int getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(long ticketId) {
+    public void setTicketId(int ticketId) {
         this.ticketId = ticketId;
     }
 
@@ -59,7 +59,7 @@ public class Ticket {
         this.assignedTo = assignedTo;
     }
 
-    public Ticket(long ticketId, String subject, String description, String status, String assignedTo) {
+    public Ticket(int ticketId, String subject, String description, String status, String assignedTo) {
         this.ticketId = ticketId;
         this.subject = subject;
         this.description = description;
